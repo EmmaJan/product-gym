@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "demo-01",
+  "locale": "fr-FR",
+  "title": "Quand le planning ne tient jamais jusqu'au vendredi",
+  "competency": "arbitrage",
+  "difficulty": 2,
+  "durationMinutes": 12,
+  "scenario": {
+    "product": "Talus, un logiciel fictif de planning pour ateliers de réparation",
+    "role": "Tu es Product Designer dans une équipe composée d'un PM et de deux développeurs.",
+    "objective": "L'équipe veut réduire les perturbations provoquées par les changements de planning après sa publication.",
+    "context": "Chaque lundi, les responsables d'atelier publient un planning de travail pour la semaine. Depuis trois mois, les demandes de modification augmentent. Le PM propose de lancer un module de planification automatique : il pense que la création manuelle est à l'origine des difficultés. Plusieurs clients demandent effectivement davantage d'automatisation, mais l'équipe dispose de peu d'informations sur les raisons concrètes des révisions. Une initiative doit être choisie pour les quatre prochaines semaines.",
+    "signals": [
+      {
+        "kind": "metric",
+        "text": "Sur les 300 ateliers actifs en octobre, 45 % ont modifié au moins une fois leur planning après publication.",
+        "sourceNote": "Journal d'événements produit, octobre, ateliers actifs"
+      },
+      {
+        "kind": "metric",
+        "text": "Parmi les ateliers de plus de 20 personnes, 37 % des modifications ont lieu à moins de 24 heures de l'intervention ; 11 % dans les ateliers plus petits.",
+        "sourceNote": "Modifications enregistrées en octobre, selon taille d'atelier"
+      },
+      {
+        "kind": "quote",
+        "text": "« Je peux préparer le lundi, mais les absences et les pièces en retard changent tout. »",
+        "sourceNote": "Un responsable d'atelier interrogé par le support"
+      },
+      {
+        "kind": "observation",
+        "text": "Le support reçoit surtout des demandes sur la modification de plannings déjà publiés ; il ne catégorise pas encore les causes de ces demandes.",
+        "sourceNote": "Revue de tickets du mois d'octobre"
+      }
+    ],
+    "constraints": [
+      "L'équipe peut consacrer quatre semaines à une première initiative, sans recrutement supplémentaire.",
+      "Le moteur actuel ne sait pas représenter de manière fiable les contraintes de disponibilité de chaque technicien.",
+      "Le PM doit annoncer une direction à la direction produit en fin de semaine."
+    ]
+  },
+  "task": {
+    "prompt": "Quelle initiative recommanderais-tu pour les quatre prochaines semaines ? Défends ton choix, ce que tu décides de ne pas faire pour l'instant et l'incertitude la plus importante à lever."
+  },
+  "challenge": {
+    "speaker": "PM",
+    "objection": "« Notre objectif est de réduire les perturbations, pas seulement de comprendre pourquoi elles arrivent. Quel résultat concret pourrons-nous montrer dans quatre semaines, et quel risque acceptons-nous en échange ? »",
+    "followUp": "Qu'est-ce que cette objection change, ou ne change pas, à ta recommandation ?"
+  },
+  "debrief": {
+    "questions": [
+      "Quel signal as-tu le plus utilisé, et quelle limite présente-t-il ?",
+      "Quel compromis assumes-tu avec ta recommandation ?",
+      "Quelle information nouvelle pourrait te faire changer de direction ?"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://product-gym.local/schemas/exercise.schema.json",
+  "title": "Product Gym — exercice public (v1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "locale", "title", "competency", "difficulty", "durationMinutes", "scenario", "task", "challenge", "debrief"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)+$", "maxLength": 64 },
+    "locale": { "const": "fr-FR" },
+    "title": { "type": "string", "minLength": 12, "maxLength": 110 },
+    "competency": { "enum": ["diagnostic", "arbitrage", "business", "leadership"] },
+    "difficulty": { "type": "integer", "minimum": 1, "maximum": 3 },
+    "durationMinutes": { "type": "integer", "minimum": 5, "maximum": 30 },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product", "role", "objective", "context", "signals", "constraints"],
+      "properties": {
+        "product": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "role": { "type": "string", "minLength": 10, "maxLength": 240 },
+        "objective": { "type": "string", "minLength": 20, "maxLength": 350 },
+        "context": { "type": "string", "minLength": 120, "maxLength": 1600 },
+        "signals": {
+          "type": "array", "minItems": 2, "maxItems": 6,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["kind", "text"],
+            "properties": {
+              "kind": { "enum": ["metric", "observation", "quote"] },
+              "text": { "type": "string", "minLength": 15, "maxLength": 300 },
+              "sourceNote": { "type": "string", "minLength": 5, "maxLength": 140 }
+            }
+          }
+        },
+        "constraints": {
+          "type": "array", "minItems": 2, "maxItems": 5,
+          "items": { "type": "string", "minLength": 10, "maxLength": 260 }
+        }
+      }
+    },
+    "task": {
+      "type": "object", "additionalProperties": false,
+      "required": ["prompt"],
+      "properties": { "prompt": { "type": "string", "minLength": 45, "maxLength": 450 } }
+    },
+    "challenge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["speaker", "objection", "followUp"],
+      "properties": {
+        "speaker": { "type": "string", "minLength": 2, "maxLength": 70 },
+        "objection": { "type": "string", "minLength": 35, "maxLength": 500 },
+        "followUp": { "type": "string", "minLength": 20, "maxLength": 300 }
+      }
+    },
+    "debrief": {
+      "type": "object", "additionalProperties": false,
+      "required": ["questions"],
+      "properties": {
+        "questions": {
+          "type": "array", "minItems": 2, "maxItems": 3,
+          "items": { "type": "string", "minLength": 20, "maxLength": 260 }
+        }
+      }
+    }
+  }
+}

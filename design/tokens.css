@@ -1,0 +1,84 @@
+/* Product Gym — Design tokens v1.0
+   Minimal light-only design system, no external dependencies.
+   Read DESIGN_SYSTEM.md before implementing components. */
+:root {
+  color-scheme: light;
+  --pg-bg: #F8F8F5;
+  --pg-surface: #FFFFFF;
+  --pg-text: #151715;
+  --pg-muted: #5C625D;
+  --pg-border: #E2E6E1;
+  --pg-border-strong: #B9C2B9;
+  --pg-accent: #18664F;
+  --pg-accent-soft: #E9F3ED;
+  --pg-danger: #AD382D;
+  --pg-hover: #F1F2EF;
+  --pg-disabled: #EDF0EC;
+
+  --pg-font: "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --pg-mono: "Geist Mono", "SFMono-Regular", Consolas, monospace;
+
+  --pg-size-xs: 0.8125rem; /* 13px — labels, metadata only */
+  --pg-size-sm: 0.875rem;  /* 14px — supporting UI */
+  --pg-size-md: 1rem;      /* 16px — body */
+  --pg-size-lg: 1.25rem;   /* 20px — section titles */
+  --pg-size-xl: 2rem;      /* 32px — page title */
+  --pg-size-hero: 3rem;    /* 48px — desktop hero only */
+
+  --pg-space-1: 0.25rem;
+  --pg-space-2: 0.5rem;
+  --pg-space-3: 0.75rem;
+  --pg-space-4: 1rem;
+  --pg-space-6: 1.5rem;
+  --pg-space-8: 2rem;
+  --pg-space-12: 3rem;
+  --pg-space-16: 4rem;
+
+  --pg-radius-sm: 0.375rem; /* 6px */
+  --pg-radius-md: 0.625rem; /* 10px */
+  --pg-radius-lg: 0.875rem; /* 14px — only large panels */
+
+  --pg-page-max: 70rem;    /* 1120px */
+  --pg-reading-max: 45rem; /* 720px */
+  --pg-touch-min: 2.75rem; /* 44px */
+  --pg-focus-ring: 0 0 0 3px var(--pg-accent-soft), 0 0 0 5px var(--pg-accent);
+}
+
+@media (max-width: 640px) {
+  :root { --pg-size-hero: 2.25rem; --pg-size-xl: 1.75rem; }
+}
+
+/* Reference primitive styles. Can be translated to Tailwind/shadcn.
+   Do not duplicate tokens as per-component magic constants. */
+.pg-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: var(--pg-touch-min); padding: 0 1.125rem;
+  font: 600 var(--pg-size-sm)/1 var(--pg-font); letter-spacing: -0.01em;
+  border: 1px solid transparent; border-radius: var(--pg-radius-md);
+  cursor: pointer; transition: background-color 140ms ease, border-color 140ms ease;
+}
+.pg-button:focus-visible, .pg-field:focus-visible, .pg-chip:focus-visible,
+.pg-nav-link:focus-visible, .pg-row:focus-visible { outline: none; box-shadow: var(--pg-focus-ring); }
+.pg-button:disabled { opacity: 0.48; cursor: not-allowed; }
+.pg-button-primary { background: var(--pg-text); color: #fff; }
+.pg-button-primary:hover:not(:disabled) { background: #313531; }
+.pg-button-secondary { color: var(--pg-text); background: var(--pg-surface); border-color: var(--pg-border-strong); }
+.pg-button-secondary:hover:not(:disabled) { background: var(--pg-hover); }
+.pg-button-quiet { color: var(--pg-text); background: transparent; }
+.pg-button-quiet:hover:not(:disabled) { background: var(--pg-hover); }
+.pg-field {
+  box-sizing: border-box; display: block; width: 100%; background: var(--pg-surface);
+  color: var(--pg-text); border: 1px solid var(--pg-border-strong);
+  border-radius: var(--pg-radius-md); padding: 0.875rem 1rem;
+  font: 400 var(--pg-size-md)/1.6 var(--pg-font);
+}
+.pg-field::placeholder { color: var(--pg-muted); }
+.pg-chip {
+  min-height: 2.25rem; padding: 0.4rem 0.75rem; border: 1px solid var(--pg-border);
+  background: transparent; color: var(--pg-muted); border-radius: 999px;
+  font: 500 var(--pg-size-sm)/1.25 var(--pg-font); cursor: pointer;
+}
+.pg-chip[aria-pressed="true"] { background: var(--pg-text); border-color: var(--pg-text); color: #fff; }
+.pg-progress { height: 3px; background: var(--pg-border); overflow: hidden; border-radius: 999px; }
+.pg-progress > span { display: block; height: 100%; background: var(--pg-accent); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
